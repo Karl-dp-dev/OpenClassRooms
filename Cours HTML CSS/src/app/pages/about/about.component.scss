@@ -1,0 +1,24 @@
+@use 'variables' as *;
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__block {
+    h2 {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: $color-accent;
+    }
+
+    p {
+      color: $color-text-muted;
+      text-align: justify;
+
+      @include respond-to(md) {
+        text-align: left;
+      }
+    }
+  }
+}

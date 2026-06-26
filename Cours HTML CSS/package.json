@@ -1,0 +1,33 @@
+{
+  "name": "karl-portfolio",
+  "version": "2.0.0",
+  "description": "Portfolio photographe Karl Dupuy — Angular, SCSS, GitHub Pages",
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build",
+    "build:gh-pages": "ng build --configuration production",
+    "deploy:prepare": "npm run build:gh-pages && node scripts/prepare-gh-pages.js",
+    "deploy": "npm run build:gh-pages && node scripts/prepare-gh-pages.js && node scripts/copy-build-to-root.js",
+    "watch": "ng build --watch --configuration development"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.2.0",
+    "@angular/common": "^19.2.0",
+    "@angular/compiler": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/forms": "^19.2.0",
+    "@angular/platform-browser": "^19.2.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
+    "@angular/router": "^19.2.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.0",
+    "@angular/cli": "^19.2.0",
+    "@angular/compiler-cli": "^19.2.0",
+    "typescript": "~5.7.2"
+  }
+}

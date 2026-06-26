@@ -1,0 +1,21 @@
+# Dependencies
+/node_modules
+
+# Build
+/dist
+/.angular
+/out-tsc
+
+# IDE
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Legacy files (replaced by Angular build)
+/style.css
+/style.css.old
+/script.js

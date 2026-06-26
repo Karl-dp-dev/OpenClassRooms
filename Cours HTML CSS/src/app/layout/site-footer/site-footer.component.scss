@@ -1,0 +1,88 @@
+@use 'variables' as *;
+
+.footer {
+  margin-top: auto;
+  background-color: $color-surface-light;
+  color: $color-bg;
+  text-align: center;
+
+  &__top {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1rem 1rem;
+    border-top: 1px solid rgba($color-bg, 0.1);
+
+    @include respond-to(md) {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+
+  &__logo-link {
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+
+  &__logo {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+  }
+
+  &__social {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      display: flex;
+      padding: 0.35rem;
+      transition: transform $transition-base;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    padding: 1rem;
+
+    a {
+      font-family: $font-body;
+      font-size: 0.95rem;
+      color: $color-bg;
+      transition: color $transition-base;
+
+      &:hover {
+        color: $color-accent;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+        border-radius: $radius-sm;
+      }
+    }
+  }
+
+  &__copy {
+    margin: 0;
+    padding: 0 1rem 1.5rem;
+    font-size: 0.85rem;
+    color: rgba($color-bg, 0.65);
+  }
+}

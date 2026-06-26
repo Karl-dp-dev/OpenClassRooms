@@ -1,0 +1,195 @@
+@use 'variables' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $nav-height;
+  padding-inline: 1rem;
+  background-color: rgba($color-surface-light, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba($color-bg, 0.12);
+
+  @include respond-to(md) {
+    padding-inline: 2rem;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $color-bg;
+    font-family: $font-heading;
+    font-weight: 600;
+    z-index: 102;
+
+    &:focus-visible {
+      @include focus-ring;
+      border-radius: $radius-sm;
+    }
+  }
+
+  &__logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__brand-text {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    border-radius: $radius-sm;
+    background: transparent;
+    cursor: pointer;
+    z-index: 102;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    @include respond-to(lg) {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 1.5rem;
+
+    span {
+      display: block;
+      height: 2px;
+      background-color: $color-bg;
+      border-radius: 2px;
+      transition: transform $transition-base, opacity $transition-base;
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba($color-bg, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-base, visibility $transition-base;
+    z-index: 100;
+
+    @include respond-to(lg) {
+      display: none;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__links {
+    @include respond-to(lg) {
+      display: block;
+    }
+
+    @media (max-width: #{$breakpoint-lg - 1px}) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(85vw, 20rem);
+      height: 100vh;
+      padding: calc($nav-height + 2rem) 2rem 2rem;
+      background-color: $color-surface-light;
+      transform: translateX(100%);
+      transition: transform $transition-base;
+      z-index: 101;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      @include respond-to(lg) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.25rem;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: $color-bg;
+      font-family: $font-heading;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      border-radius: $radius-sm;
+      transition: color $transition-base, background-color $transition-base;
+
+      @include respond-to(lg) {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      &:hover {
+        color: $color-accent;
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+
+      &.active {
+        color: $color-accent;
+        font-weight: 700;
+
+        @include respond-to(lg) {
+          border-bottom: 2px solid $color-accent;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

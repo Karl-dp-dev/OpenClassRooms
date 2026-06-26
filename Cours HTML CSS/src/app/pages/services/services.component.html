@@ -1,0 +1,58 @@
+<section class="services">
+  <article class="services__intro card">
+    <h3 class="section-title">Mes prestations</h3>
+    <p>
+      Je propose une gamme de services en photographie et vidéographie adaptés
+      à vos besoins spécifiques. Que vous soyez un particulier ou une
+      entreprise, je suis là pour vous aider à capturer vos moments précieux et
+      à créer des contenus visuels percutants.
+    </p>
+  </article>
+
+  <article class="services__list card">
+    <h3 class="section-title">Services proposés</h3>
+    <ul class="services__items">
+      @for (service of services; track service) {
+        <li>{{ service }}</li>
+      }
+    </ul>
+  </article>
+
+  <article class="services__pricing card">
+    <h3 class="section-title">Tarifs</h3>
+    <p>
+      Mes tarifs varient en fonction de la nature et de la durée de la
+      prestation. Voici une fourchette indicative des prix :
+    </p>
+
+    <div class="services__table-wrapper">
+      <table class="services__table">
+        <caption>Tarifs des prestations</caption>
+        <thead>
+          <tr>
+            <th scope="col">Type de prestation</th>
+            <th scope="col">Description</th>
+            <th scope="col">Tarif indicatif</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of pricing; track item.name) {
+            <tr>
+              <td data-label="Prestation">{{ item.name }}</td>
+              <td data-label="Description">{{ item.description }}</td>
+              <td data-label="Tarif">{{ item.price }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Chaque prestation est personnalisable en fonction de vos besoins et de
+      votre budget. N'hésitez pas à me contacter pour discuter de votre projet
+      et obtenir un devis sur mesure.
+    </p>
+
+    <a routerLink="/contact" class="btn">Me contacter pour un devis</a>
+  </article>
+</section>

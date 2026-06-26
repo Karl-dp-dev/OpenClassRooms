@@ -1,0 +1,36 @@
+<footer class="footer">
+  <div class="footer__top">
+    <a routerLink="/" class="footer__logo-link">
+      <img
+        [src]="profile.logo"
+        alt="Logo Karl Dupuy PressFProduction"
+        class="footer__logo"
+        width="80"
+        height="80"
+      />
+    </a>
+
+    <div class="footer__social">
+      @for (social of socialLinks; track social.name) {
+        <a
+          [href]="social.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          [title]="social.alt"
+        >
+          <img [src]="social.icon" [alt]="social.alt" width="24" height="24" />
+        </a>
+      }
+    </div>
+  </div>
+
+  <nav class="footer__nav" aria-label="Liens du pied de page">
+    @for (link of footerLinks; track link.path) {
+      <a [routerLink]="link.path">{{ link.label }}</a>
+    }
+  </nav>
+
+  <p class="footer__copy">
+    &copy; {{ currentYear }} Karl Dupuy — Photographe &amp; Vidéaste, Rennes
+  </p>
+</footer>

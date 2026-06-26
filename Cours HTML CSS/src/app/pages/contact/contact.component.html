@@ -1,0 +1,73 @@
+<section class="contact">
+  <div class="contact__intro card">
+    <h3 class="section-title">Besoin d'informations ?</h3>
+    <p>
+      Pour toute demande de renseignements, de devis ou de collaboration,
+      n'hésitez pas à me contacter via le formulaire ci-dessous :
+    </p>
+  </div>
+
+  <form class="contact__form card" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Un projet ?</legend>
+
+      <div class="contact__field">
+        <label for="name">Nom prénom</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          autocomplete="name"
+          [class.contact__input--error]="nameControl.touched && nameControl.invalid"
+        />
+        @if (nameControl.touched && nameControl.hasError('required')) {
+          <span class="contact__error">Le nom est requis.</span>
+        }
+      </div>
+
+      <div class="contact__field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          [class.contact__input--error]="emailControl.touched && emailControl.invalid"
+        />
+        @if (emailControl.touched && emailControl.hasError('required')) {
+          <span class="contact__error">L'email est requis.</span>
+        }
+        @if (emailControl.touched && emailControl.hasError('email')) {
+          <span class="contact__error">Format d'email invalide.</span>
+        }
+      </div>
+
+      <div class="contact__field">
+        <label for="phone">Téléphone</label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="+33"
+          autocomplete="tel"
+        />
+      </div>
+
+      <div class="contact__field">
+        <label for="message">Votre message</label>
+        <textarea id="message" formControlName="message" rows="5"></textarea>
+        @if (messageControl.touched && messageControl.hasError('required')) {
+          <span class="contact__error">Le message est requis.</span>
+        }
+      </div>
+
+      <button type="submit" class="btn">Envoyer</button>
+
+      @if (submitted()) {
+        <p class="contact__success" role="status">
+          Votre client mail va s'ouvrir pour finaliser l'envoi.
+        </p>
+      }
+    </fieldset>
+  </form>
+</section>

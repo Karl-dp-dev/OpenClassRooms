@@ -1,0 +1,107 @@
+@use 'variables' as *;
+
+.hero {
+  margin-top: $nav-height;
+  background: linear-gradient(
+    135deg,
+    $color-surface-light 0%,
+    darken($color-surface-light, 6%) 100%
+  );
+
+  &__content {
+    @include container;
+    display: grid;
+    gap: 1.5rem;
+    padding-block: 2.5rem 3rem;
+    text-align: center;
+
+    @include respond-to(md) {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      align-items: center;
+      text-align: left;
+      padding-block: 3rem 3.5rem;
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: 1fr auto auto;
+      gap: 2rem;
+    }
+  }
+
+  &__text {
+    h1,
+    h2 {
+      color: $color-bg;
+    }
+
+    h2 {
+      color: rgba($color-bg, 0.75);
+    }
+
+    @include respond-to(md) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    @include respond-to(md) {
+      grid-column: 1;
+      grid-row: 2;
+      justify-content: flex-start;
+    }
+
+    @include respond-to(lg) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+
+    a {
+      display: flex;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: transform $transition-base;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+
+      &:focus-visible {
+        @include focus-ring;
+      }
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__avatar {
+    justify-self: center;
+
+    @include respond-to(md) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    @include respond-to(lg) {
+      grid-column: 3;
+    }
+
+    img {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid $color-accent;
+      box-shadow: 0 0 0 3px $color-bg;
+    }
+  }
+}

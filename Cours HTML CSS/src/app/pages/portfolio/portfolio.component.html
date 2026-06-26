@@ -1,0 +1,12 @@
+<section class="portfolio">
+  <h3 class="section-title">Photos</h3>
+
+  <div class="portfolio__grid">
+    @for (photo of photos; track photo.src) {
+      <a [href]="photo.src" class="portfolio__item" target="_blank" rel="noopener">
+        <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
+        <span class="portfolio__overlay">Voir la photo</span>
+      </a>
+    }
+  </div>
+</section>

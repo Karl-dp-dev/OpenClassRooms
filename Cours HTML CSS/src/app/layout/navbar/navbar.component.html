@@ -1,0 +1,51 @@
+<nav class="navbar" [class.navbar--menu-open]="menuOpen()">
+  <a routerLink="/" class="navbar__brand" (click)="closeMenu()">
+    <img
+      src="assets/images/profil/logo_14-PFP.png"
+      alt="Logo Karl Dupuy"
+      class="navbar__logo"
+      width="40"
+      height="40"
+    />
+    <span class="navbar__brand-text">Karl Dupuy</span>
+  </a>
+
+  <button
+    type="button"
+    class="navbar__toggle"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="main-navigation"
+    aria-label="Ouvrir le menu"
+    (click)="toggleMenu()"
+  >
+    <span class="navbar__burger" [class.navbar__burger--open]="menuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <div
+    id="main-navigation"
+    class="navbar__overlay"
+    [class.navbar__overlay--visible]="menuOpen()"
+    (click)="closeMenu()"
+  ></div>
+
+  <div class="navbar__links" [class.navbar__links--open]="menuOpen()">
+    <ul>
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            (click)="closeMenu()"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

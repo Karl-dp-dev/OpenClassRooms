@@ -1,0 +1,116 @@
+@use 'variables' as *;
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  p {
+    color: $color-text-muted;
+  }
+
+  &__items {
+    display: grid;
+    gap: 0.75rem;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    li {
+      position: relative;
+      padding-left: 1.5rem;
+      color: $color-text-muted;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: $color-accent;
+      }
+    }
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    margin-block: 1.5rem;
+    border-radius: $radius-md;
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 32rem;
+    border-collapse: collapse;
+    background-color: $color-surface-light;
+    color: $color-bg;
+
+    caption {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      caption-side: top;
+      text-align: left;
+      color: $color-text;
+    }
+
+    th,
+    td {
+      padding: 0.875rem 1rem;
+      border: 1px solid rgba($color-bg, 0.15);
+      text-align: left;
+    }
+
+    th {
+      background-color: darken($color-surface-light, 5%);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      min-width: 0;
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid rgba($color-bg, 0.15);
+        border-radius: $radius-sm;
+        overflow: hidden;
+      }
+
+      td {
+        display: block;
+        border: none;
+        border-bottom: 1px solid rgba($color-bg, 0.08);
+        padding: 0.75rem 1rem;
+
+        &::before {
+          content: attr(data-label) ': ';
+          font-weight: 600;
+          display: block;
+          margin-bottom: 0.25rem;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          color: rgba($color-bg, 0.6);
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .btn {
+    margin-top: 1rem;
+  }
+}
