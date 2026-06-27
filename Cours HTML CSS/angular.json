@@ -56,7 +56,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/OpenClassRooms/"
+              "baseHref": "/OpenClassRooms/MyPortfolio/"
             },
             "development": {
               "optimization": false,
@@ -81,7 +81,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/OpenClassRooms/"
+            "baseHref": "/OpenClassRooms/MyPortfolio/"
           }
         }
       }
