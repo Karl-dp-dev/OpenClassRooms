@@ -1,4 +1,4 @@
-# Portfolio Karl Dupuy — Angular + SCSS
+# Portfolio Karl Dupuy - Angular + SCSS
 
 Refonte du portfolio photographe en **Angular 22**, **TypeScript** et **SCSS**, avec interface responsive (mobile & desktop) et déploiement sur **GitHub Pages** via la branche `gh-pages`.
 
@@ -29,19 +29,17 @@ Ouvrir [http://localhost:4200](http://localhost:4200).
 ## Déploiement GitHub Pages
 
 Le site est publié sur :
-`https://milous98.github.io/OpenClassRooms/`
+`https://karl-dp-dev.github.io/OpenClassRooms/MyPortfolio`
 
-Le déploiement utilise [`angular-cli-ghpages`](https://github.com/angular-schule/angular-cli-ghpages) : le code source reste sur `main`, le build compilé est poussé sur la branche `gh-pages`.
+Le déploiement est géré par le workflow GitHub Actions [`.github/workflows/deploy-github-pages.yml`](../.github/workflows/deploy-github-pages.yml) : le code source reste sur `main`, les builds sont poussés sur la branche `gh-pages` dans le sous-dossier `MyPortfolio/` (sans écraser les autres projets du dépôt, ex. `AzerType/`).
+
+En local, compilez uniquement :
 
 ```bash
-npm run deploy
+npm run build
 ```
 
-Cette commande :
-
-1. Compile l'application en mode production
-2. Crée le `404.html` pour le routage SPA
-3. Pousse le build sur la branche `gh-pages`
+Le workflow CI se déclenche automatiquement à chaque push sur `main` modifiant `Cours HTML CSS/` ou `Cours JavaScript/`.
 
 ### Configuration GitHub Pages
 

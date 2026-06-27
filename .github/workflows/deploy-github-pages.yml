@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'Cours HTML CSS/**'
+      - 'Cours JavaScript/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: 'Cours HTML CSS/package-lock.json'
+
+      - name: Build Portfolio Angular
+        working-directory: 'Cours HTML CSS'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          mkdir -p /tmp/gh-pages-artifacts/MyPortfolio /tmp/gh-pages-artifacts/AzerType
+          cp -r "Cours HTML CSS/dist/karl-portfolio/browser/." /tmp/gh-pages-artifacts/MyPortfolio/
+          cp "Cours HTML CSS/dist/karl-portfolio/browser/index.html" /tmp/gh-pages-artifacts/MyPortfolio/404.html
+          cp -r "Cours JavaScript/." /tmp/gh-pages-artifacts/AzerType/
+
+          git fetch origin gh-pages || true
+
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            git checkout gh-pages
+            git reset --hard origin/gh-pages
+          else
+            git checkout --orphan gh-pages
+            git rm -rf . 2>/dev/null || true
+          fi
+
+          rm -rf MyPortfolio AzerType
+          cp -r /tmp/gh-pages-artifacts/MyPortfolio ./MyPortfolio
+          cp -r /tmp/gh-pages-artifacts/AzerType ./AzerType
+          touch .nojekyll
+
+          # Remove legacy root-level deploy from angular-cli-ghpages
+          find . -maxdepth 1 -type f \( -name '*.js' -o -name '*.css' -o -name 'index.html' -o -name '404.html' \) -delete 2>/dev/null || true
+          rm -rf assets "Cours HTML CSS" "Cours JavaScript" 2>/dev/null || true
+
+          git add -A
+          git diff --staged --quiet || git commit -m "chore(pages): deploy MyPortfolio and AzerType"
+          git push origin HEAD:gh-pages
