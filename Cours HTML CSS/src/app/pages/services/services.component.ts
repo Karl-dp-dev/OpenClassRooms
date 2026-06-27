@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PRICING_TABLE, SERVICES_LIST } from '../../core/data/site.data';
 
@@ -7,6 +7,7 @@ import { PRICING_TABLE, SERVICES_LIST } from '../../core/data/site.data';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './services.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './services.component.scss',
 })
 export class ServicesComponent {
